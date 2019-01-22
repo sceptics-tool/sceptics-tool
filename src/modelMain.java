@@ -57,7 +57,7 @@ class modelMain {
 			//end comes from assets.xml for RoutedGraph.REV
 			//profile comes from CVSS
 
-			System.out.println("UNIVERSITY OF BIRMINGHAM");
+			System.out.println("                        ");
 			System.out.println("     SCEPTICS TOOL      ");
 			System.out.println("------------------------\n");
 			System.out.println("INPUT:");
@@ -235,7 +235,7 @@ class modelMain {
 			}
 
 			// Patient Zero analysis is using Graph.FWD (we specify the start node as compromised)
-			CvssVisioGraph rawGraphFWD = new CvssVisioGraph("./res/ertmsCVSSExample.vsdx", "Page-1");
+			CvssVisioGraph rawGraphFWD = new CvssVisioGraph("./res/testModel.vsdx", "Page-1");
 			ProbORGraphAprx graphFWD = new ProbORGraphAprx(rawGraphFWD, RoutedGraph.FWD, assets.get(0).getId(),
 					assets.get(0).getDataTypes(), CvssEdge.CVSSVALUE);
 			for (Asset a : assets) {
