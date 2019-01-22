@@ -1,0 +1,8 @@
+<!ATTLIST adversary id CDATA #REQUIRED>
+
+<!ELEMENT adversaries (adversary+)>
+<!ELEMENT adversary (edge_types+, entry_nodes+)>
+<!ELEMENT entry_nodes (node+)>
+<!ELEMENT edge_types (type+)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT node (#PCDATA)>

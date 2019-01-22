@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE assets SYSTEM "asset.dtd">
+<assets>
+  <asset>
+    <nodes>
+      <name>EVC</name>
+    </nodes>
+    <data_types>
+      <type>authenticated</type>
+      <type>position</type>
+      <type>data</type>
+      <type>cvss</type>
+    </data_types>
+    <data_profiles>
+      <profile>cvss</profile>
+    </data_profiles>
+  </asset> 
+</assets>

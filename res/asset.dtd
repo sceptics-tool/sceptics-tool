@@ -1,0 +1,8 @@
+<!ELEMENT assets (asset+)>
+<!ELEMENT asset (nodes+,data_types,data_profiles)>
+<!ELEMENT nodes (name)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT data_types (type+)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT data_profiles (profile+)>
+<!ELEMENT profile (#PCDATA)>

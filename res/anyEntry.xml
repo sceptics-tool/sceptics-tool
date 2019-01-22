@@ -1,0 +1,11 @@
+Tweak Radar doppler to shove it down the list. DONE
+Remove GPS link to the internet DONE
+
+Do CVSS for the entire model. DONE
+Fudge some of the values to push JRU/Driver's display down DONE
+Look at the datatypes - hide vulnerabilities if we see this specific datatypes Seems OK
+
+Create new datatype and run through with the existing ones to show it works. Balise via the RBC.
+
+Bulletpoint about COTS automated firmware analysis. DONE
+

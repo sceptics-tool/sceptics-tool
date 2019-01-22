@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+
+<!--Graph-->
+<graph>
+
+	<!--Nodes-->
+
+	<node id="n0" name="balize">
+		<data_types>
+			<type>position</type>
+		</data_types>
+	</node>
+
+	<node id="n1" name="train">
+		<data_types> <!--Data types handled by the node-->
+			<type>position</type>
+			<type>control</type>
+			<type>authenticated</type>
+			<type>non-authenticated/emergency</type>
+		</data_types>
+		<!--Conversions between data types-->
+		<bridge from="position">
+			<to>authenticated</to>
+		</bridge>
+		<bridge from="control">
+			<to>non-authenticated/emergency</to>
+		</bridge>
+		<bridge from="authenticated">
+			<to>control</to>
+		</bridge>
+		<bridge from="non-authenticated/emergency">
+			<to>control</to>
+		</bridge>
+	</node>
+
+	<node id="n2" name="GSM-R Radio">
+		<data_types>
+			<type>authenticated</type>
+			<type>non-authenticated/emergency</type>
+		</data_types>
+	</node>
+
+	<node id="n3" name="RBC">
+		<data_types>
+			<type>authenticated</type>
+			<type>non-authenticated/emergency</type>
+			<type>control</type>
+			<type>position</type>
+		</data_types>
+		<bridge from="control">
+			<to>authenticated</to>
+			<to>non-authenticated/emergency</to>
+		</bridge>
+		<bridge from="authenticated">
+			<to>control</to>
+			<to>position</to>
+		</bridge>
+		<bridge from="non-authenticated/emergency">
+			<to>control</to>
+			<to>position</to>
+		</bridge>
+	</node>
+
+	<node id="n4" name="Key Management">
+		<data_types>
+			<type>authenticated</type>
+			<type>non-authenticated/emergency</type>
+		</data_types>
+	</node>
+
+	<!--Edges-->
+
+	<!--Balize -> Train-->
+	<edge source="n0" target="n1">
+		<data_profile linkType="short-range wireless" dataType="position">
+			<vulnerability>0.3</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.8</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--Train -> GSM-R-->
+	<edge source="n1" target="n2">
+		<!--Data types handled by the edge -->
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<!--Profile of the data -->
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--GSM-R -> Train-->
+	<edge source="n2" target="n1">
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.7</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.7</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--Train -> Key-->
+	<edge source="n1" target="n4">
+		<!--Data types handled by the edge -->
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<!--Profile of the data -->
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!-- Key -> Train -->
+	<edge source="n4" target="n1">
+		<!--Data types handled by the edge -->
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<!--Profile of the data -->
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--GSM-R -> RBC-->
+	<edge source="n2" target="n3">
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.7</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.7</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--RBC -> GSM-R-->
+	<edge source="n3" target="n2">
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>1</confidentiality>
+			<availability>0.7</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.7</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+
+	<!--Key -> RBC-->
+	<edge source="n3" target="n4">
+		<!--Data types handled by the edge -->
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<!--Profile of the data -->
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+	<!-- RBC -> Key -->
+	<edge source="n4" target="n3">
+		<!--Data types handled by the edge -->
+		<data_profile linkType="long-range wireless" dataType="authenticated">
+			<!--Profile of the data -->
+			<vulnerability>0.01</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>1</integrity>
+		</data_profile>
+		<data_profile linkType="long-range wireless" dataType="non-authenticated/emergency">
+			<vulnerability>0.1</vulnerability>
+			<confidentiality>0</confidentiality>
+			<availability>0.5</availability>
+			<integrity>0</integrity>
+		</data_profile>
+	</edge>
+</graph>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE adversaries SYSTEM "adversary.dtd">
+<!--Adversary Capabilities/Restriction Mask-->
+<adversaries>
+  <adversary id="a1">
+    <edge_types>
+      <type>short-range wireless</type>
+      <!--OR operation-->
+      <type>long-range wireless</type>
+    </edge_types>
+    <entry_nodes>
+    <!--AND operation-->
+      <node>SecureBalise</node>
+    </entry_nodes>
+  </adversary>
+ 
+  <adversary id="a2">
+    <edge_types>
+      <type>short-range wireless</type>
+      <!--OR operation-->
+      <type>long-range wireless</type>
+    </edge_types>
+    <entry_nodes>
+    <!--AND operation-->
+      <node>Workstation1</node>
+      <node>Workstation2</node>
+    </entry_nodes>
+  </adversary>
+ 
+  <adversary id="a3">
+    <edge_types>
+      <type>short-range wireless</type>
+      <!--OR operation-->
+      <type>long-range wireless</type>
+    </edge_types>
+    <entry_nodes>
+    <!--AND operation-->
+      <node>GPS</node>
+    </entry_nodes>
+  </adversary>
+</adversaries>

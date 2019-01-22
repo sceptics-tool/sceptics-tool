@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE adversaries SYSTEM "adversary.dtd">
+<!--Adversary Capabilities/Restriction Mask-->
+<adversaries>
+	<adversary id="a1">
+		<edge_types>
+			<type>short-range wireless</type>
+		</edge_types>
+		<entry_nodes>
+		<!--AND operation-->
+			<node>any</node>
+		</entry_nodes>
+	</adversary>
+</adversaries>
